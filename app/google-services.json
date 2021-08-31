@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "218334392151",
+    "project_id": "file-transfer-applicatio-73616",
+    "storage_bucket": "file-transfer-applicatio-73616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218334392151:android:d47a227716e51eaa1ed812",
+        "android_client_info": {
+          "package_name": "com.bikash.filetransferapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218334392151-0rvq2prbemqe2l4m3n6v1mvqoir3gvsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAer8VbF1Sci4_ljmXLnILNxdm5BtorJ0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218334392151-0rvq2prbemqe2l4m3n6v1mvqoir3gvsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
