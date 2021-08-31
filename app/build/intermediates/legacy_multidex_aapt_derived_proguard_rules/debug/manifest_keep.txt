@@ -1,1 +1,0 @@
--keep class com.bikash.filetransferapp.base.App { <init>(); }
