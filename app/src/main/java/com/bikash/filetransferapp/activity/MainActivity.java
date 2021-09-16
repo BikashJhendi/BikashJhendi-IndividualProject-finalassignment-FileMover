@@ -185,7 +185,7 @@ public class MainActivity
          //   finish();
 
         } else if (R.id.menu_activity_pin == mChosenMenuItemId) {
-            startActivity(new Intent(this, WebShareActivity.class));
+            startActivity(new Intent(this, AppSettingActivity.class));
         } else if (R.id.menu_activity_share == mChosenMenuItemId) {
             startActivity(new Intent(this, ContentSharingActivity.class));
 
