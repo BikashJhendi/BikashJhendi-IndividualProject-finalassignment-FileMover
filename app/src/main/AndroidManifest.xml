@@ -32,10 +32,14 @@
         android:theme="@style/Theme.TBShare"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activity.SetPinActivity"
-            android:label="Set Pin"
+        <activity android:name=".activity.PinCheckerActivity"
+            android:label="Verification"
             android:theme="@style/Theme.TBShare.NoActionBar.StaticStatusBar"
             />
+        <activity
+            android:name=".activity.SetPinActivity"
+            android:label="Set Pin"
+            android:theme="@style/Theme.TBShare.NoActionBar.StaticStatusBar" />
         <activity
             android:name=".activity.AppSettingActivity"
             android:label="Setting"

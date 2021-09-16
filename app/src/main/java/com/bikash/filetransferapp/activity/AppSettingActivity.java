@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class AppSettingActivity extends Activity {
-    EditText eddd;
+    String SecretPin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,8 +42,6 @@ public class AppSettingActivity extends Activity {
             }
         });
 
-        eddd = (EditText) findViewById(R.id.eddd);
-        getUserLogin();
     }
 
     @Override
@@ -59,8 +57,8 @@ public class AppSettingActivity extends Activity {
         return true;
     }
 
-    //    gets the email and password if available
-    private void getUserLogin() {
+    //    gets the encrypted pin if available
+    private void getSecretPin() {
         try {
             String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
 
@@ -71,9 +69,7 @@ public class AppSettingActivity extends Activity {
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             );
-            String pin = encryptedPreferences.getString("pin", "");
-
-            eddd.setText(pin);
+            SecretPin = encryptedPreferences.getString("secretPin", "");
 
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();

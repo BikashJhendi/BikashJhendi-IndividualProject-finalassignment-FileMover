@@ -17,14 +17,15 @@ import com.hanks.passcodeview.PasscodeView;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-public class SetPinActivity extends AppCompatActivity {
+public class PinCheckerActivity extends AppCompatActivity {
     PasscodeView passcodeView;
     String SecretPin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_pin);
+        setContentView(R.layout.activity_pin_checker);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,7 +37,8 @@ public class SetPinActivity extends AppCompatActivity {
         passcodeView = findViewById(R.id.passcodeView);
 
         getSecretPin();
-        saveSecretPin();
+
+        checkSecretPin();
     }
 
     @Override
@@ -49,48 +51,6 @@ public class SetPinActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
 
         return true;
-    }
-
-//  save the pin
-    private void saveSecretPin() {
-        passcodeView.setListener(new PasscodeView.PasscodeViewListener() {
-            @Override
-            public void onFail() {
-                Toast.makeText(getApplicationContext(), "Pin is Wrong",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onSuccess(String number) {
-                saveUserPin(number);
-                startActivity(new Intent(getApplicationContext(), AppSettingActivity.class));
-                finish();
-            }
-
-            //            saving pin on SharedPreferences
-            private void saveUserPin(String pin) {
-                try {
-                    String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-
-                    // Storing data into EncryptedSharedPreferences
-                    SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                            "secret_pin",
-                            masterKeyAlias,
-                            getApplicationContext(),
-                            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-                    );
-                    // Creating an Editor object to edit(write to the file)
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    // Storing the key and its value as the data fetched from edittext
-                    editor.putString("secretPin", pin);
-                    editor.apply();
-                } catch (GeneralSecurityException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     //    gets the encrypted pin if available
@@ -112,4 +72,21 @@ public class SetPinActivity extends AppCompatActivity {
         }
     }
 
+//    check the pin
+    private void checkSecretPin() {
+        passcodeView.setLocalPasscode(SecretPin)
+                .setListener(new PasscodeView.PasscodeViewListener() {
+                    @Override
+                    public void onFail() {
+                        Toast.makeText(getApplicationContext(), "Wrong pin number. Please enter correct pin.",
+                                Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onSuccess(String number) {
+                        startActivity(new Intent(PinCheckerActivity.this, MainActivity.class));
+                        finish();
+                    }
+                });
+    }
 }
