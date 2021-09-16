@@ -184,7 +184,7 @@ public class MainActivity
             startActivity(new Intent(this, MainActivity.class));
          //   finish();
 
-        } else if (R.id.menu_activity_main_web_share == mChosenMenuItemId) {
+        } else if (R.id.menu_activity_pin == mChosenMenuItemId) {
             startActivity(new Intent(this, WebShareActivity.class));
         } else if (R.id.menu_activity_share == mChosenMenuItemId) {
             startActivity(new Intent(this, ContentSharingActivity.class));
@@ -193,58 +193,58 @@ public class MainActivity
             startActivity(new Intent(this, ConnectionManagerActivity.class)
                     .putExtra(ConnectionManagerActivity.EXTRA_ACTIVITY_SUBTITLE, getString(R.string.text_receive))
                     .putExtra(ConnectionManagerActivity.EXTRA_REQUEST_TYPE, ConnectionManagerActivity.RequestType.MAKE_ACQUAINTANCE.toString()));
-
-        } else if (R.id.nav_share == mChosenMenuItemId) {
-
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            String shareBody = "Best File Sharing app download now. https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share App");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-            startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
-        } else if (R.id.about_me == mChosenMenuItemId) {
-            aboutMyApp();
-        } else if (R.id.privacypolicy == mChosenMenuItemId) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setTitle("Privacy Policy");
-
-            WebView wv = new WebView(this);
-            wv.getSettings().setJavaScriptEnabled(true);
-            wv.loadUrl("https://pharid.com/privacy-policy"); //Your Privacy Policy Url Here
-            wv.setWebViewClient(new WebViewClient() {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    view.getSettings().setJavaScriptEnabled(true);
-                    view.loadUrl(url);
-
-                    return true;
-                }
-            });
-
-            alert.setView(wv);
-            alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss();
-                }
-            });
-            alert.show();
-        } else if (R.id.rate_us == mChosenMenuItemId) {
-
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getApplicationContext().getPackageName())));
-
-        } else if (R.id.moreapp == mChosenMenuItemId) {
-
-            Uri uri = Uri.parse("market://search?q=pub:" + "PA Production"); //Developer AC Name
-            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-            try {
-                startActivity(goToMarket);
-            } catch (ActivityNotFoundException e) {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://play.google.com/store/search?q=pub:" + "PA Production"))); //Developer AC Name
-            }
         }
+//            else if (R.id.nav_share == mChosenMenuItemId) {
+//
+//            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//            sharingIntent.setType("text/plain");
+//            String shareBody = "Best File Sharing app download now. https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
+//            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share App");
+//            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+//
+//        } else if (R.id.about_me == mChosenMenuItemId) {
+//            aboutMyApp();
+//        } else if (R.id.privacypolicy == mChosenMenuItemId) {
+//            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+//            alert.setTitle("Privacy Policy");
+//
+//            WebView wv = new WebView(this);
+//            wv.getSettings().setJavaScriptEnabled(true);
+//            wv.loadUrl("https://pharid.com/privacy-policy"); //Your Privacy Policy Url Here
+//            wv.setWebViewClient(new WebViewClient() {
+//                @Override
+//                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                    view.getSettings().setJavaScriptEnabled(true);
+//                    view.loadUrl(url);
+//
+//                    return true;
+//                }
+//            });
+//
+//            alert.setView(wv);
+//            alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int id) {
+//                    dialog.dismiss();
+//                }
+//            });
+//            alert.show();
+//        } else if (R.id.rate_us == mChosenMenuItemId) {
+//
+//            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getApplicationContext().getPackageName())));
+//
+//        } else if (R.id.moreapp == mChosenMenuItemId) {
+//
+//            Uri uri = Uri.parse("market://search?q=pub:" + "PA Production"); //Developer AC Name
+//            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+//            try {
+//                startActivity(goToMarket);
+//            } catch (ActivityNotFoundException e) {
+//                startActivity(new Intent(Intent.ACTION_VIEW,
+//                        Uri.parse("http://play.google.com/store/search?q=pub:" + "PA Production"))); //Developer AC Name
+//            }
+//        }
 
         mChosenMenuItemId = 0;
     }
