@@ -184,7 +184,7 @@ public class MainActivity
             startActivity(new Intent(this, MainActivity.class));
          //   finish();
 
-        } else if (R.id.menu_activity_pin == mChosenMenuItemId) {
+        } else if (R.id.menu_activity_setting == mChosenMenuItemId) {
             startActivity(new Intent(this, AppSettingActivity.class));
         } else if (R.id.menu_activity_share == mChosenMenuItemId) {
             startActivity(new Intent(this, ContentSharingActivity.class));

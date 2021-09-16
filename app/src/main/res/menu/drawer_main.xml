@@ -31,7 +31,7 @@
             android:title="Receive Files" />
 
         <item
-            android:id="@+id/menu_activity_pin"
+            android:id="@+id/menu_activity_setting"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="Setting" />
 
