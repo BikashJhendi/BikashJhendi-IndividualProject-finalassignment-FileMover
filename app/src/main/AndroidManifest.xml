@@ -32,6 +32,7 @@
         android:theme="@style/Theme.TBShare"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory">
+        <activity android:name=".activity.SetPinActivity"></activity>
         <activity
             android:name=".activity.AppSettingActivity"
             android:label="Setting"
