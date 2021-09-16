@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -86,50 +88,19 @@ public class TransferGroupListFragment
         setEmptyImage(R.drawable.ic_compare_arrows_white_24dp);
         setEmptyText(getString(R.string.text_listEmptyTransfer));
 
-        View viewSend = view.findViewById(R.id.sendLayoutButton);
-        View viewReceive = view.findViewById(R.id.receiveLayoutButton);
+//        View viewSend = view.findViewById(R.id.sendLayoutButton);
+//        View viewReceive = view.findViewById(R.id.receiveLayoutButton);
 
-        RelativeLayout send1 = (RelativeLayout) view.findViewById(R.id.send1);
-        send1.setOnClickListener(new View.OnClickListener() {
+        Button btn_send = (Button) view.findViewById(R.id.btn_send);
+        btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ContentSharingActivity.class));
             }
         });
 
-        RelativeLayout send2 = (RelativeLayout) view.findViewById(R.id.send2);
-        send2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), ContentSharingActivity.class));
-            }
-        });
-
-        RelativeLayout send3 = (RelativeLayout) view.findViewById(R.id.send3);
-        send3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), ContentSharingActivity.class));
-            }
-        });
-
-        RelativeLayout send4 = (RelativeLayout) view.findViewById(R.id.send4);
-        send4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), ContentSharingActivity.class));
-            }
-        });
-
-
-        viewSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), ContentSharingActivity.class));
-            }
-        });
-
-        viewReceive.setOnClickListener(new View.OnClickListener() {
+        Button btn_receive = (Button) view.findViewById(R.id.btn_receive);
+        btn_receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ConnectionManagerActivity.class)
@@ -137,6 +108,47 @@ public class TransferGroupListFragment
                         .putExtra(ConnectionManagerActivity.EXTRA_REQUEST_TYPE, ConnectionManagerActivity.RequestType.MAKE_ACQUAINTANCE.toString()));
             }
         });
+
+//        RelativeLayout send2 = (RelativeLayout) view.findViewById(R.id.send2);
+//        send2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), ContentSharingActivity.class));
+//            }
+//        });
+
+//        RelativeLayout send3 = (RelativeLayout) view.findViewById(R.id.send3);
+//        send3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), ContentSharingActivity.class));
+//            }
+//        });
+//
+//        RelativeLayout send4 = (RelativeLayout) view.findViewById(R.id.send4);
+//        send4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), ContentSharingActivity.class));
+//            }
+//        });
+
+
+//        viewSend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), ContentSharingActivity.class));
+//            }
+//        });
+//
+//        viewReceive.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), ConnectionManagerActivity.class)
+//                        .putExtra(ConnectionManagerActivity.EXTRA_ACTIVITY_SUBTITLE, getString(R.string.text_receive))
+//                        .putExtra(ConnectionManagerActivity.EXTRA_REQUEST_TYPE, ConnectionManagerActivity.RequestType.MAKE_ACQUAINTANCE.toString()));
+//            }
+//        });
     }
 
     @Override

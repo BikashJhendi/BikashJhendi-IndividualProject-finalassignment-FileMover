@@ -2,8 +2,9 @@
 <resources>
 
     <color name="colorPrimary">#0466C8</color>
-    <color name="colorPrimaryDark">#0466C8</color>
-
+    <color name="colorPrimaryDark">#023e7d</color>
+    <color name="colorSendBtn">#0353a4</color>
+    <color name="colorReceiveBtn">#fb3640</color>
 
     <color name="colorControlNormal">#222</color>
     <color name="colorError">#afb42b</color>
