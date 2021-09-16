@@ -37,7 +37,7 @@ public class SetPinActivity extends AppCompatActivity {
         passcodeView.setListener(new PasscodeView.PasscodeViewListener() {
             @Override
             public void onFail() {
-                Toast.makeText(getApplicationContext(), "Pin is Wrong" + passcodeView,
+                Toast.makeText(getApplicationContext(), "Pin is Wrong",
                         Toast.LENGTH_LONG).show();
             }
 
