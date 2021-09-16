@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.bikash.filetransferapp"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 8
         versionName "1.6"
@@ -76,4 +76,8 @@ dependencies {
   //  implementation 'com.google.android.gms:play-services-ads:19.2.0'
     implementation 'com.onesignal:OneSignal:3.14.1'
 
+    implementation 'com.hanks:passcodeview:0.1.2'
+
+//    EncryptedSharedPreferences
+    implementation 'androidx.security:security-crypto:1.0.0-rc02'
 }

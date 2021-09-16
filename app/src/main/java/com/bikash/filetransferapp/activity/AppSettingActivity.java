@@ -2,18 +2,25 @@ package com.bikash.filetransferapp.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.bikash.filetransferapp.R;
 import com.google.android.material.appbar.AppBarLayout;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
 public class AppSettingActivity extends Activity {
-    private AppBarLayout mAppBarLayout;
+    EditText eddd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,8 +28,6 @@ public class AppSettingActivity extends Activity {
         setContentView(R.layout.activity_app_setting);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-        mAppBarLayout = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -36,6 +41,9 @@ public class AppSettingActivity extends Activity {
                 startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
             }
         });
+
+        eddd = (EditText) findViewById(R.id.eddd);
+        getUserLogin();
     }
 
     @Override
@@ -49,5 +57,26 @@ public class AppSettingActivity extends Activity {
             return super.onOptionsItemSelected(item);
 
         return true;
+    }
+
+    //    gets the email and password if available
+    private void getUserLogin() {
+        try {
+            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+
+            SharedPreferences encryptedPreferences = EncryptedSharedPreferences.create(
+                    "secret_pin",
+                    masterKeyAlias,
+                    getApplicationContext(),
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+            String pin = encryptedPreferences.getString("pin", "");
+
+            eddd.setText(pin);
+
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

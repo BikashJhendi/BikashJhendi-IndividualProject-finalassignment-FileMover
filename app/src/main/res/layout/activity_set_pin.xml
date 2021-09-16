@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.SetPinActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+            </com.google.android.material.appbar.AppBarLayout>
+        </LinearLayout>
+
+        <com.hanks.passcodeview.PasscodeView
+            android:id="@+id/passcodeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:correctStateColor="#71bb4d"
+            app:firstInputTip="Enter a pin code of 6 digits "
+            app:normalStateColor="#ffffff"
+            app:numberTextColor="#222222"
+            app:passcodeLength="6"
+            app:passcodeViewType="set_passcode"
+            app:wrongStateColor="#ea2b46" />
+    </LinearLayout>
 
 </RelativeLayout>
