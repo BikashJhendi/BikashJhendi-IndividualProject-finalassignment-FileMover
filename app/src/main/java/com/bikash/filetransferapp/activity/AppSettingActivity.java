@@ -47,7 +47,14 @@ public class AppSettingActivity extends Activity {
         btn_pin_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+                if(SecretPin.equals("")) {
+                    startActivity(new Intent(getApplicationContext(), SetPinActivity.class));
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), PinCheckerActivity.class);
+                    intent.putExtra("activity", "Setting");
+                    startActivity(intent);
+                }
             }
         });
 

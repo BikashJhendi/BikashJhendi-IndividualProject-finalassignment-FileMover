@@ -36,7 +36,9 @@ public class SplashActivity extends Activity
             startActivity(new Intent(this, MainActivity.class));
         }
         else {
-            startActivity(new Intent(this, PinCheckerActivity.class));
+            Intent intent = new Intent(this, PinCheckerActivity.class);
+            intent.putExtra("activity", "Splash");
+            startActivity(intent);
         }
         finish();
 

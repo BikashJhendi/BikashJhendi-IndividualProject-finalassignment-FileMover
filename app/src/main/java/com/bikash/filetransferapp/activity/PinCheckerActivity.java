@@ -16,10 +16,12 @@ import com.hanks.passcodeview.PasscodeView;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Set;
 
 public class PinCheckerActivity extends AppCompatActivity {
     PasscodeView passcodeView;
     String SecretPin;
+    String activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,10 @@ public class PinCheckerActivity extends AppCompatActivity {
         }
 
         passcodeView = findViewById(R.id.passcodeView);
+
+        Intent intent = getIntent();
+
+        activity = intent.getStringExtra("activity");
 
 //        passcodeView.getListener(new PasscodeView());
 
@@ -85,8 +91,14 @@ public class PinCheckerActivity extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(String number) {
-                        startActivity(new Intent(PinCheckerActivity.this, MainActivity.class));
-                        finish();
+                        if(activity.equals("Splash")) {
+                            startActivity(new Intent(PinCheckerActivity.this, MainActivity.class));
+                            finish();
+                        }
+                        else if (activity.equals("Setting")){
+                            startActivity(new Intent(PinCheckerActivity.this, SetPinActivity.class));
+                            finish();
+                        }
                     }
                 });
     }

@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bikash.filetransferapp.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.hanks.passcodeview.PasscodeView;
 
 import java.io.IOException;
@@ -20,6 +23,7 @@ import java.security.GeneralSecurityException;
 public class SetPinActivity extends AppCompatActivity {
     PasscodeView passcodeView;
     String SecretPin;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class SetPinActivity extends AppCompatActivity {
         }
 
         passcodeView = findViewById(R.id.passcodeView);
+        linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
 
         getSecretPin();
         saveSecretPin();
@@ -56,8 +61,18 @@ public class SetPinActivity extends AppCompatActivity {
         passcodeView.setListener(new PasscodeView.PasscodeViewListener() {
             @Override
             public void onFail() {
-                Toast.makeText(getApplicationContext(), "Pin is Wrong",
-                        Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(
+                        linearLayout,
+                        "Pin mismatch. Enter the same pin.",
+                        Snackbar.LENGTH_LONG
+                );
+                snackbar.setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
             }
 
             @Override
