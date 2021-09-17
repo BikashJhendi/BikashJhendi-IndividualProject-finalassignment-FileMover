@@ -24,7 +24,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +37,8 @@
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_bar_height"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                >
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:id="@+id/toolbar_layout"
@@ -70,7 +73,25 @@
                 android:text="Set Pin / Change Pin"
                 android:textSize="20sp"
                 android:padding="10dp"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                app:cornerRadius="30dp"
+                />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#0353a4"
+                android:text="Delete Pin from App"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 app:cornerRadius="30dp"
                 />
         </LinearLayout>

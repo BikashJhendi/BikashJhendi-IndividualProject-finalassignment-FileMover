@@ -26,7 +26,6 @@ public class PinCheckerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_checker);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -35,6 +34,8 @@ public class PinCheckerActivity extends AppCompatActivity {
         }
 
         passcodeView = findViewById(R.id.passcodeView);
+
+//        passcodeView.getListener(new PasscodeView());
 
         getSecretPin();
 
