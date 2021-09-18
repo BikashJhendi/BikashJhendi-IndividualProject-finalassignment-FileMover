@@ -28,7 +28,10 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_logo_48dp"
+                android:background="@drawable/logo_shape"
+                android:padding="20dp"
+                />
 
             <TextView
                 android:id="@+id/splashTexts"
@@ -96,7 +99,7 @@
         android:id="@+id/layout_welcome_page_1_splash_image"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        app:srcCompat="@mipmap/ic_logo"
         android:visibility="gone"/>
 
     <LinearLayout

@@ -204,7 +204,7 @@
     <style name="CustomListFragmentEmptyImageStyle">
         <item name="android:background">?rippleBackground</item>
         <item name="android:cropToPadding">true</item>
-        <item name="srcCompat">@mipmap/ic_launcher</item>
+        <item name="srcCompat">@mipmap/ic_logo</item>
         <item name="tint">@android:color/white</item>
     </style>
 

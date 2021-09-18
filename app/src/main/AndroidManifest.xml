@@ -26,7 +26,8 @@
         android:allowBackup="true"
         android:appComponentFactory="@string/app_name"
         android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
+        android:roundIcon="@mipmap/ic_logo_circle"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.TBShare"
@@ -196,7 +197,7 @@
             android:label="@string/text_workerService" />
         <service
             android:name=".service.CommunicationToggleTile"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_logo"
             android:label="@string/text_shareFiles"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:process=":transfer">

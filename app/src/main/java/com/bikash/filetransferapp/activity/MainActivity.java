@@ -258,7 +258,7 @@ public class MainActivity
                 .titleColorRes(android.R.color.white)
                 .positiveText("MORE APPS")
                 .positiveColor(getResources().getColor(android.R.color.white))
-                .icon(getResources().getDrawable(R.mipmap.ic_launcher))
+                .icon(getResources().getDrawable(R.mipmap.ic_logo))
                 .limitIconToDefaultSize()
                 .onPositive((dialog, which) -> {
 

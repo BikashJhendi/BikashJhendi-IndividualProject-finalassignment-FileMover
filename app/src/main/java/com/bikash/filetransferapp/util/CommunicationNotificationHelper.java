@@ -50,7 +50,7 @@ public class CommunicationNotificationHelper
 
         builder.append(getContext().getString(R.string.text_communicationServiceRunning));
 
-        notification.setSmallIcon(R.mipmap.ic_launcher)
+        notification.setSmallIcon(R.drawable.ic_logo)
                 .setContentTitle(builder.toString())
                 .setContentText(getContext().getString(R.string.text_communicationServiceStop))
                 .setAutoCancel(true)
