@@ -8,10 +8,14 @@ import androidx.security.crypto.MasterKeys;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bikash.filetransferapp.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.hanks.passcodeview.PasscodeView;
 
 import java.io.IOException;
@@ -22,6 +26,7 @@ public class PinCheckerActivity extends AppCompatActivity {
     PasscodeView passcodeView;
     String SecretPin;
     String activity;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class PinCheckerActivity extends AppCompatActivity {
         }
 
         passcodeView = findViewById(R.id.passcodeView);
+        linearLayout = findViewById(R.id.linearLayout);
 
         Intent intent = getIntent();
 
@@ -79,9 +85,10 @@ public class PinCheckerActivity extends AppCompatActivity {
         }
     }
 
-//    check the pin
+    //    check the pin
     private void checkSecretPin() {
-        passcodeView.setLocalPasscode(SecretPin)
+        passcodeView
+                .setLocalPasscode(SecretPin)
                 .setListener(new PasscodeView.PasscodeViewListener() {
                     @Override
                     public void onFail() {
@@ -91,15 +98,66 @@ public class PinCheckerActivity extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(String number) {
-                        if(activity.equals("Splash")) {
-                            startActivity(new Intent(PinCheckerActivity.this, MainActivity.class));
-                            finish();
-                        }
-                        else if (activity.equals("Setting")){
-                            startActivity(new Intent(PinCheckerActivity.this, SetPinActivity.class));
-                            finish();
+                        switch (activity) {
+                            case "Splash":
+                                startActivity(new Intent(PinCheckerActivity.this, MainActivity.class));
+                                finish();
+                                break;
+                            case "Setting":
+                                startActivity(new Intent(PinCheckerActivity.this, SetPinActivity.class));
+                                finish();
+                                break;
+                            case "DeletePin":
+                                clearSecretPin();
+
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+
+//                                        finish();
+//                                        startActivity(getIntent()); // to get same intent or activity
+                                    }
+                                }, 1500);
+
+                                break;
                         }
                     }
                 });
+    }
+
+    //    delete secret pin
+    private void clearSecretPin() {
+        try {
+            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+
+            SharedPreferences encryptedPreferences = EncryptedSharedPreferences.create(
+                    "secret_pin",
+                    masterKeyAlias,
+                    getApplicationContext(),
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+            encryptedPreferences.edit().remove("secretPin").apply();
+
+            Snackbar snackbar = Snackbar.make(
+                    linearLayout,
+                    "Pin remove successfully.",
+                    Snackbar.LENGTH_LONG
+            );
+            snackbar.setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    snackbar.dismiss();
+                }
+            });
+            snackbar.show();
+
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

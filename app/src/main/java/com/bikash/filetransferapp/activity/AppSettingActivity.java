@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ import java.security.GeneralSecurityException;
 public class AppSettingActivity extends Activity {
     String SecretPin;
     LinearLayout linearLayout;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class AppSettingActivity extends Activity {
         }
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        builder = new AlertDialog.Builder(this);
 
         getSecretPin();
 
@@ -62,47 +66,29 @@ public class AppSettingActivity extends Activity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SecretPin.equals("")) {
-                    Snackbar snackbar = Snackbar.make(
-                            linearLayout,
-                            "Don't have a pin.",
-                            Snackbar.LENGTH_LONG
-                    );
-                    snackbar.setAction("Ok", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    snackbar.dismiss();
-                                }
-                            });
-                    snackbar.show();
-                } else {
-                    clearSecretPin();
+//                builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
-                    Snackbar snackbar = Snackbar.make(
-                            linearLayout,
-                            "Pin remove successfully.",
-                            Snackbar.LENGTH_LONG
-                    );
-                    snackbar.setAction("Ok", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            snackbar.dismiss();
-                        }
-                    });
-                    snackbar.show();
+                builder.setMessage("Do you want to delete the pin number?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                checkPin();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //  Action for 'NO' Button
+                                dialog.cancel();
+                            }
+                        });
 
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            finish();
-                            startActivity(getIntent());
-                        }
-                    }, 1500);
-                }
+                //Creating dialog box
+                AlertDialog alert = builder.create();
+                //Setting the title manually
+                alert.setTitle("Alert");
+                alert.show();
             }
         });
-
     }
 
     @Override
@@ -136,22 +122,25 @@ public class AppSettingActivity extends Activity {
         }
     }
 
-    //    delete
-    private void clearSecretPin() {
-        try {
-            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-
-            SharedPreferences encryptedPreferences = EncryptedSharedPreferences.create(
-                    "secret_pin",
-                    masterKeyAlias,
-                    getApplicationContext(),
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+//    check the pin is available or not. if yes then verify the current pin.
+    private void checkPin() {
+        if (SecretPin.equals("")) {
+            Snackbar snackbar = Snackbar.make(
+                    linearLayout,
+                    "Don't have a pin.",
+                    Snackbar.LENGTH_LONG
             );
-            encryptedPreferences.edit().remove("secretPin").apply();
-
-        } catch (GeneralSecurityException | IOException e) {
-            e.printStackTrace();
+            snackbar.setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    snackbar.dismiss();
+                }
+            });
+            snackbar.show();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), PinCheckerActivity.class);
+            intent.putExtra("activity", "DeletePin");
+            startActivity(intent);
         }
     }
 }
