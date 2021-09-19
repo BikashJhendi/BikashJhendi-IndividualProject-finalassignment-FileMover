@@ -59,6 +59,9 @@ public class MainActivity
     private long mExitPressTime;
     private int mChosenMenuItemId;
 
+    AlertDialog.Builder versionDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -68,11 +71,34 @@ public class MainActivity
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        versionDialog = new AlertDialog.Builder(this);
+
+
+
         if (checkPermission()) {
 
 
         } else {
-            requestPermission();
+//            checking version
+            int Release = Integer.parseInt(Build.VERSION.RELEASE);
+            if (Release >= 10) {
+//                alert msg
+                versionDialog.setTitle("Warning");
+                versionDialog.setMessage("Your device isn't compatible with FileMover. " +
+                        "\nCurrently, FileMover isn't supporting the version greater than or equal to 10 due to the recent privacy policy changes in Android 10." +
+                        "Please install the app which has an android version below 10." +
+                        "\nThank You.");
+                versionDialog.setNegativeButton(R.string.butn_close, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+                    }
+                }).show();
+            }
+            else {
+                requestPermission();
+            }
 
         }
         mHomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.activitiy_home_fragment);
