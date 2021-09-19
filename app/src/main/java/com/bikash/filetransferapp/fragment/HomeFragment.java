@@ -35,24 +35,24 @@ public class HomeFragment
     {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        FloatingActionButton actionReceive = (FloatingActionButton)view.findViewById(R.id.floating_receive);
-
-        actionReceive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ConnectionManagerActivity.class)
-                        .putExtra(ConnectionManagerActivity.EXTRA_ACTIVITY_SUBTITLE, getString(R.string.text_receive))
-                        .putExtra(ConnectionManagerActivity.EXTRA_REQUEST_TYPE, ConnectionManagerActivity.RequestType.MAKE_ACQUAINTANCE.toString()));
-            }
-        });
-
-        FloatingActionButton actionSend = (FloatingActionButton)view.findViewById(R.id.floating_send);
-        actionSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ContentSharingActivity.class));
-            }
-        });
+//        FloatingActionButton actionReceive = (FloatingActionButton)view.findViewById(R.id.floating_receive);
+//
+//        actionReceive.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getContext(), ConnectionManagerActivity.class)
+//                        .putExtra(ConnectionManagerActivity.EXTRA_ACTIVITY_SUBTITLE, getString(R.string.text_receive))
+//                        .putExtra(ConnectionManagerActivity.EXTRA_REQUEST_TYPE, ConnectionManagerActivity.RequestType.MAKE_ACQUAINTANCE.toString()));
+//            }
+//        });
+//
+//        FloatingActionButton actionSend = (FloatingActionButton)view.findViewById(R.id.floating_send);
+//        actionSend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getContext(), ContentSharingActivity.class));
+//            }
+//        });
 
         final BottomNavigationView bottomNavigationView = view.findViewById(R.id.layout_home_bottom_navigation_view);
         mViewPager = view.findViewById(R.id.layout_home_view_pager);

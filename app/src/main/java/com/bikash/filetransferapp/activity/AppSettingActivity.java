@@ -1,25 +1,20 @@
 package com.bikash.filetransferapp.activity;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.bikash.filetransferapp.R;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
@@ -28,7 +23,7 @@ import java.security.GeneralSecurityException;
 public class AppSettingActivity extends Activity {
     String SecretPin;
     LinearLayout linearLayout;
-    AlertDialog.Builder builder;
+    AlertDialog.Builder dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +38,7 @@ public class AppSettingActivity extends Activity {
         }
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        builder = new AlertDialog.Builder(this);
+        dialog = new AlertDialog.Builder(this);
 
         getSecretPin();
 
@@ -66,27 +61,19 @@ public class AppSettingActivity extends Activity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
-                builder.setMessage("Do you want to delete the pin number?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                checkPin();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //  Action for 'NO' Button
-                                dialog.cancel();
-                            }
-                        });
-
-                //Creating dialog box
-                AlertDialog alert = builder.create();
-                //Setting the title manually
-                alert.setTitle("Alert");
-                alert.show();
+//                alert msg
+                dialog.setTitle("Warning");
+                dialog.setMessage("Do you want to delete the current PIN number?");
+                dialog.setNegativeButton(R.string.butn_close, null);
+                dialog.setPositiveButton(R.string.butn_proceed, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                         checkPin();
+                    }
+                }).show();
             }
         });
     }

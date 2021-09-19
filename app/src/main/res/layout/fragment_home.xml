@@ -33,31 +33,31 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:background="@color/colorPrimary"
-            app:backgroundTint="@color/colorPrimary"
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/floating_send"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|right"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            app:backgroundTint="@color/colorPrimary"-->
 
-            app:fabCustomSize="55dp"
-            app:fabSize="auto"
-            app:maxImageSize="45dp"
-            app:srcCompat="@drawable/ic_send" />
+<!--            app:fabCustomSize="55dp"-->
+<!--            app:fabSize="auto"-->
+<!--            app:maxImageSize="45dp"-->
+<!--            app:srcCompat="@drawable/ic_send" />-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_receive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            android:layout_margin="16dp"
-            android:background="@color/colorPrimary"
-            app:backgroundTint="@color/colorPrimary"
-            app:fabCustomSize="55dp"
-            app:fabSize="auto"
-            app:maxImageSize="45dp"
-            app:srcCompat="@drawable/ic_receive" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/floating_receive"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|left"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            app:backgroundTint="@color/colorPrimary"-->
+<!--            app:fabCustomSize="55dp"-->
+<!--            app:fabSize="auto"-->
+<!--            app:maxImageSize="45dp"-->
+<!--            app:srcCompat="@drawable/ic_receive" />-->
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

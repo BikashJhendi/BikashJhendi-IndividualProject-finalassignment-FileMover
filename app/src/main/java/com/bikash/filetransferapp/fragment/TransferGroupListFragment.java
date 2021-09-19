@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bikash.filetransferapp.view.EditableListFragmentImpl;
@@ -91,16 +92,16 @@ public class TransferGroupListFragment
 //        View viewSend = view.findViewById(R.id.sendLayoutButton);
 //        View viewReceive = view.findViewById(R.id.receiveLayoutButton);
 
-        Button btn_send = (Button) view.findViewById(R.id.btn_send);
-        btn_send.setOnClickListener(new View.OnClickListener() {
+        CardView cardView_send = (CardView) view.findViewById(R.id.cardView_send);
+        cardView_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ContentSharingActivity.class));
             }
         });
 
-        Button btn_receive = (Button) view.findViewById(R.id.btn_receive);
-        btn_receive.setOnClickListener(new View.OnClickListener() {
+        CardView cardView_receive = (CardView) view.findViewById(R.id.cardView_receive);
+        cardView_receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ConnectionManagerActivity.class)
