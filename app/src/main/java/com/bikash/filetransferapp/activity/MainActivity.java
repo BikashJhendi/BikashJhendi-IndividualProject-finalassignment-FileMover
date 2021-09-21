@@ -36,7 +36,7 @@ import com.bikash.filetransferapp.util.AppUtils;
 import com.bikash.filetransferapp.R;
 import com.bikash.filetransferapp.model.NetworkDevice;
 import com.bikash.filetransferapp.service.CommunicationService;
-import com.afollestad.materialdialogs.MaterialDialog;
+//import com.afollestad.materialdialogs.MaterialDialog;
 import com.genonbeta.android.framework.widget.PowerfulActionMode;
 import com.google.android.material.navigation.NavigationView;
 
@@ -80,6 +80,7 @@ public class MainActivity
 
 
         } else {
+            requestPermission();
 //            checking version
             int Release = Integer.parseInt(Build.VERSION.RELEASE);
             if (Release >= 10) {
@@ -95,9 +96,6 @@ public class MainActivity
                         finishAffinity();
                     }
                 }).show();
-            }
-            else {
-                requestPermission();
             }
 
         }
@@ -275,38 +273,38 @@ public class MainActivity
         mChosenMenuItemId = 0;
     }
 
-    private void aboutMyApp() {
-
-        MaterialDialog.Builder bulder = new MaterialDialog.Builder(this)
-                .title(R.string.app_name)
-                .customView(R.layout.about, true)
-                .backgroundColor(getResources().getColor(R.color.colorPrimaryDark))
-                .titleColorRes(android.R.color.white)
-                .positiveText("MORE APPS")
-                .positiveColor(getResources().getColor(android.R.color.white))
-                .icon(getResources().getDrawable(R.mipmap.ic_logo))
-                .limitIconToDefaultSize()
-                .onPositive((dialog, which) -> {
-
-                    Uri uri = Uri.parse("market://search?q=pub:" + "PA Production"); //Developer AC Name
-                    Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                    try {
-                        startActivity(goToMarket);
-                    } catch (ActivityNotFoundException e) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,
-                                Uri.parse("http://play.google.com/store/search?q=pub:" + "PA Production"))); //Developer AC Name
-                    }
-                });
-
-        MaterialDialog materialDialog = bulder.build();
-
-        TextView versionCode = (TextView) materialDialog.findViewById(R.id.version_code);
-        TextView versionName = (TextView) materialDialog.findViewById(R.id.version_name);
-        versionCode.setText(String.valueOf("Version Code : " + BuildConfig.VERSION_CODE));
-        versionName.setText(String.valueOf("Version Name : " + BuildConfig.VERSION_NAME));
-
-        materialDialog.show();
-    }
+//    private void aboutMyApp() {
+//
+//        MaterialDialog.Builder bulder = new MaterialDialog.Builder(this)
+//                .title(R.string.app_name)
+//                .customView(R.layout.about, true)
+//                .backgroundColor(getResources().getColor(R.color.colorPrimaryDark))
+//                .titleColorRes(android.R.color.white)
+//                .positiveText("MORE APPS")
+//                .positiveColor(getResources().getColor(android.R.color.white))
+//                .icon(getResources().getDrawable(R.mipmap.ic_logo))
+//                .limitIconToDefaultSize()
+//                .onPositive((dialog, which) -> {
+//
+//                    Uri uri = Uri.parse("market://search?q=pub:" + "PA Production"); //Developer AC Name
+//                    Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+//                    try {
+//                        startActivity(goToMarket);
+//                    } catch (ActivityNotFoundException e) {
+//                        startActivity(new Intent(Intent.ACTION_VIEW,
+//                                Uri.parse("http://play.google.com/store/search?q=pub:" + "PA Production"))); //Developer AC Name
+//                    }
+//                });
+//
+//        MaterialDialog materialDialog = bulder.build();
+//
+//        TextView versionCode = (TextView) materialDialog.findViewById(R.id.version_code);
+//        TextView versionName = (TextView) materialDialog.findViewById(R.id.version_name);
+//        versionCode.setText(String.valueOf("Version Code : " + BuildConfig.VERSION_CODE));
+//        versionName.setText(String.valueOf("Version Name : " + BuildConfig.VERSION_NAME));
+//
+//        materialDialog.show();
+//    }
 
     private void createHeaderView()
     {

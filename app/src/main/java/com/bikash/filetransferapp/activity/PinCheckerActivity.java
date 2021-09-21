@@ -44,13 +44,9 @@ public class PinCheckerActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearLayout);
 
         Intent intent = getIntent();
-
         activity = intent.getStringExtra("activity");
 
-//        passcodeView.getListener(new PasscodeView());
-
         getSecretPin();
-
         checkSecretPin();
     }
 
@@ -117,9 +113,6 @@ public class PinCheckerActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                         finish();
-
-//                                        finish();
-//                                        startActivity(getIntent()); // to get same intent or activity
                                     }
                                 }, 1500);
 
